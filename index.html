@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Equity2Bitcoin — Turn Your Home Equity Into Digital Wealth</title>
-  <meta name="description" content="Equity2Bitcoin guides homeowners through a compliant, milestone-based consulting process to strategically convert dormant home equity into Bitcoin. Educational. Non-custodial. Results-driven." />
+  <title>Equity2Bitcoin — Book Your Free Home Equity Consultation</title>
+  <meta name="description" content="Discover how to responsibly convert your home equity into Bitcoin — step by step, fully guided, with no financial advice or custody. Book your free consultation today." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
@@ -14,17 +14,18 @@
     :root {
       --navy:   #0d1b2a;
       --navy2:  #122033;
+      --navy3:  #0a1520;
       --gold:   #f5a623;
       --gold2:  #e09510;
       --white:  #ffffff;
       --light:  #f4f6f9;
       --muted:  #8a9ab5;
+      --green:  #4ade80;
       --border: rgba(245,166,35,0.18);
       --card:   rgba(255,255,255,0.04);
     }
 
     html { scroll-behavior: smooth; }
-
     body {
       font-family: 'Inter', sans-serif;
       background: var(--navy);
@@ -33,460 +34,386 @@
       overflow-x: hidden;
     }
 
-    /* ─── NAV ─────────────────────────────── */
+    /* ── NAV ─────────────────────────────── */
     nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
       display: flex; align-items: center; justify-content: space-between;
       padding: 1rem 2.5rem;
-      background: rgba(13,27,42,0.92);
-      backdrop-filter: blur(12px);
+      background: rgba(13,27,42,0.95);
+      backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
     }
-
     .nav-logo {
-      display: flex; align-items: center; gap: 0.6rem;
+      display: flex; align-items: center; gap: 0.55rem;
       text-decoration: none;
     }
-
-    .nav-logo .logo-icon {
-      width: 40px; height: 40px;
-    }
-
+    .nav-logo svg { width: 38px; height: 38px; }
     .nav-logo span {
-      font-size: 1.2rem; font-weight: 800;
+      font-size: 1.15rem; font-weight: 800;
       background: linear-gradient(90deg, var(--white) 55%, var(--gold));
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
-
-    .nav-links {
-      display: flex; align-items: center; gap: 2rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      color: var(--muted); text-decoration: none;
-      font-size: 0.9rem; font-weight: 500;
-      transition: color 0.2s;
-    }
-
+    .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color .2s; }
     .nav-links a:hover { color: var(--white); }
-
-    .nav-cta {
-      background: var(--gold); color: var(--navy) !important;
-      padding: 0.5rem 1.3rem; border-radius: 6px;
-      font-weight: 700 !important; font-size: 0.875rem !important;
-      transition: background 0.2s !important;
+    .nav-book {
+      background: var(--gold); color: var(--navy);
+      padding: 0.55rem 1.4rem; border-radius: 7px;
+      font-weight: 700; font-size: 0.875rem; text-decoration: none;
+      transition: background .2s, transform .15s; white-space: nowrap;
     }
-    .nav-cta:hover { background: var(--gold2) !important; color: var(--navy) !important; }
+    .nav-book:hover { background: var(--gold2); transform: translateY(-1px); }
 
-    /* ─── HERO ────────────────────────────── */
+    /* ── STICKY MOBILE BOOK BAR ──────────── */
+    .sticky-bar {
+      display: none;
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
+      background: var(--navy2); border-top: 1px solid var(--border);
+      padding: 0.9rem 1.5rem;
+    }
+    .sticky-bar a {
+      display: block; text-align: center;
+      background: var(--gold); color: var(--navy);
+      padding: 0.85rem; border-radius: 8px;
+      font-weight: 800; font-size: 1rem; text-decoration: none;
+    }
+    @media(max-width:768px) {
+      .sticky-bar { display: block; }
+      nav { padding: 0.8rem 1.2rem; }
+      .nav-links { display: none; }
+    }
+
+    /* ── HERO ────────────────────────────── */
     .hero {
       min-height: 100vh;
-      display: flex; flex-direction: column; justify-content: center; align-items: center;
-      text-align: center;
-      padding: 7rem 2rem 4rem;
-      position: relative;
-      overflow: hidden;
+      display: flex; align-items: center;
+      padding: 8rem 2rem 4rem;
+      position: relative; overflow: hidden;
     }
-
     .hero::before {
       content: '';
       position: absolute; inset: 0;
-      background: radial-gradient(ellipse 80% 60% at 50% 30%, rgba(245,166,35,0.09) 0%, transparent 70%);
+      background: radial-gradient(ellipse 90% 70% at 30% 40%, rgba(245,166,35,0.08) 0%, transparent 65%);
       pointer-events: none;
     }
-
+    .hero-inner {
+      max-width: 1100px; margin: 0 auto; width: 100%;
+      display: grid; grid-template-columns: 1fr 440px; gap: 4rem; align-items: center;
+    }
     .hero-badge {
-      display: inline-flex; align-items: center; gap: 0.45rem;
+      display: inline-flex; align-items: center; gap: 0.4rem;
       background: rgba(245,166,35,0.12); border: 1px solid rgba(245,166,35,0.3);
       color: var(--gold); border-radius: 50px;
-      padding: 0.35rem 1rem; font-size: 0.8rem; font-weight: 600;
-      margin-bottom: 1.8rem; letter-spacing: 0.04em; text-transform: uppercase;
+      padding: 0.3rem 0.9rem; font-size: 0.75rem; font-weight: 700;
+      margin-bottom: 1.5rem; letter-spacing: 0.06em; text-transform: uppercase;
     }
-
     .hero h1 {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(2.6rem, 6vw, 4.5rem);
-      font-weight: 800; line-height: 1.12;
-      max-width: 880px; margin: 0 auto 1.5rem;
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 800; line-height: 1.1; margin-bottom: 1.25rem;
     }
-
     .hero h1 em {
       font-style: normal;
       background: linear-gradient(90deg, var(--gold), #ffd280);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
-
     .hero-sub {
-      font-size: clamp(1rem, 2vw, 1.2rem);
-      color: var(--muted); max-width: 640px; margin: 0 auto 2.5rem;
+      font-size: 1.05rem; color: var(--muted);
+      margin-bottom: 2rem; max-width: 520px; line-height: 1.7;
     }
-
-    .hero-actions {
-      display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
-      margin-bottom: 3.5rem;
+    .hero-checks { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; margin-bottom: 2.25rem; }
+    .hero-checks li { display: flex; align-items: center; gap: 0.6rem; font-size: 0.95rem; color: var(--white); }
+    .hero-checks .ck {
+      width: 22px; height: 22px; border-radius: 50%;
+      background: rgba(74,222,128,0.15); color: var(--green);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.7rem; flex-shrink: 0; font-weight: 900;
     }
-
-    .btn-primary {
-      background: var(--gold); color: var(--navy);
-      padding: 0.85rem 2rem; border-radius: 8px;
-      font-weight: 700; font-size: 1rem; text-decoration: none;
-      transition: background 0.2s, transform 0.15s;
-      display: inline-block;
+    .hero-social { display: flex; align-items: center; gap: 0.75rem; margin-top: 1rem; }
+    .hero-social p { font-size: 0.8rem; color: var(--muted); }
+    .avatar-row { display: flex; }
+    .avatar {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold), #c97d0e);
+      border: 2px solid var(--navy); margin-left: -8px; display: flex;
+      align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700;
     }
-    .btn-primary:hover { background: var(--gold2); transform: translateY(-1px); }
+    .avatar:first-child { margin-left: 0; }
 
-    .btn-outline {
-      background: transparent; color: var(--white);
-      padding: 0.85rem 2rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2);
-      font-weight: 600; font-size: 1rem; text-decoration: none;
-      transition: border-color 0.2s, transform 0.15s;
-      display: inline-block;
+    /* Booking card in hero */
+    .hero-card {
+      background: var(--navy2); border: 1px solid var(--border);
+      border-radius: 20px; padding: 2rem;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.4);
     }
-    .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-1px); }
-
-    .hero-stats {
-      display: flex; gap: 2rem; flex-wrap: wrap; justify-content: center;
-      border-top: 1px solid var(--border); padding-top: 2.5rem;
-      width: 100%; max-width: 700px; margin: 0 auto;
+    .hero-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.25rem; }
+    .hero-card .sub { font-size: 0.82rem; color: var(--muted); margin-bottom: 1.5rem; }
+    .field { margin-bottom: 1rem; }
+    .field label { display: block; font-size: 0.78rem; font-weight: 600; color: var(--muted); margin-bottom: 0.35rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .field input, .field select {
+      width: 100%; background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--white); border-radius: 8px; padding: 0.7rem 1rem;
+      font-size: 0.9rem; font-family: inherit; outline: none; transition: border-color .2s;
+      appearance: none;
     }
-
-    .hero-stat {
-      text-align: center;
+    .field select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238a9ab5' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem; }
+    .field select option { background: var(--navy2); }
+    .field input::placeholder { color: #5a6a7f; }
+    .field input:focus, .field select:focus { border-color: var(--gold); }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+    .btn-book {
+      width: 100%; background: var(--gold); color: var(--navy);
+      border: none; border-radius: 8px; padding: 0.9rem;
+      font-weight: 800; font-size: 1rem; cursor: pointer;
+      font-family: inherit; transition: background .2s; margin-top: 0.25rem;
     }
-    .hero-stat strong {
-      display: block; font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800;
-      color: var(--gold);
+    .btn-book:hover { background: var(--gold2); }
+    .card-disclaimer { font-size: 0.7rem; color: var(--muted); text-align: center; margin-top: 0.75rem; line-height: 1.5; }
+
+    /* ── PAIN POINTS ─────────────────────── */
+    .pain { background: var(--navy2); padding: 5rem 2rem; }
+    .pain .container { max-width: 1100px; margin: 0 auto; }
+    .pain-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem;
     }
-    .hero-stat span { font-size: 0.82rem; color: var(--muted); font-weight: 500; }
+    .pain-card {
+      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 14px; padding: 1.75rem;
+      transition: border-color .2s;
+    }
+    .pain-card:hover { border-color: rgba(245,166,35,0.3); }
+    .pain-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .pain-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .pain-card p { font-size: 0.875rem; color: var(--muted); line-height: 1.65; }
 
-    /* ─── SECTION WRAPPER ─────────────────── */
-    section { padding: 5rem 2rem; }
-
+    /* ── SECTION SHARED ──────────────────── */
+    section.std { padding: 5rem 2rem; }
     .container { max-width: 1100px; margin: 0 auto; }
-
     .section-label {
-      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em;
-      text-transform: uppercase; color: var(--gold);
-      margin-bottom: 0.75rem;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem;
     }
-
     .section-title {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(1.8rem, 4vw, 2.7rem);
-      font-weight: 800; line-height: 1.2;
-      margin-bottom: 1rem;
+      font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800; line-height: 1.2; margin-bottom: 0.85rem;
     }
+    .section-sub { color: var(--muted); font-size: 1rem; max-width: 560px; margin-bottom: 2.75rem; line-height: 1.7; }
 
-    .section-sub {
-      color: var(--muted); font-size: 1.05rem;
-      max-width: 580px; margin-bottom: 3rem;
+    /* ── PROCESS ─────────────────────────── */
+    .process { background: var(--navy); }
+    .steps {
+      display: grid; grid-template-columns: repeat(5, 1fr); gap: 0;
+      position: relative; margin-top: 1rem;
     }
-
-    /* ─── PROBLEM ─────────────────────────── */
-    .problem { background: var(--navy2); }
-
-    .problem-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 2rem; align-items: center;
-    }
-
-    .problem-text .quote {
-      border-left: 3px solid var(--gold);
-      padding: 1rem 1.5rem;
-      background: rgba(245,166,35,0.06);
-      border-radius: 0 8px 8px 0;
-      font-style: italic; color: var(--muted);
-      margin: 1.5rem 0;
-      font-size: 1rem;
-    }
-
-    .problem-points { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
-    .problem-points li {
-      display: flex; gap: 0.75rem; align-items: flex-start;
-    }
-    .problem-points .icon {
-      width: 28px; height: 28px; border-radius: 50%;
-      background: rgba(245,166,35,0.12); flex-shrink: 0;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.85rem; margin-top: 0.1rem;
-    }
-    .problem-points p { font-size: 0.95rem; color: var(--muted); }
-    .problem-points strong { color: var(--white); }
-
-    .problem-card {
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: 16px; padding: 2rem;
-      display: flex; flex-direction: column; gap: 1.5rem;
-    }
-
-    .stat-box {
-      text-align: center; padding: 1.5rem;
-      background: rgba(245,166,35,0.07);
-      border-radius: 10px; border: 1px solid var(--border);
-    }
-    .stat-box .number {
-      font-size: 2.4rem; font-weight: 900; color: var(--gold); line-height: 1;
-      margin-bottom: 0.3rem;
-    }
-    .stat-box .label { font-size: 0.82rem; color: var(--muted); font-weight: 500; }
-
-    /* ─── HOW IT WORKS ────────────────────── */
-    .how { background: var(--navy); }
-
-    .milestones {
-      display: flex; flex-direction: column; gap: 0;
-      position: relative;
-    }
-
-    .milestones::before {
+    .steps::before {
       content: '';
-      position: absolute; left: 28px; top: 0; bottom: 0; width: 2px;
-      background: linear-gradient(180deg, var(--gold), transparent);
+      position: absolute; top: 28px; left: 10%; right: 10%; height: 2px;
+      background: linear-gradient(90deg, var(--gold), rgba(245,166,35,0.2));
       z-index: 0;
     }
-
-    .milestone {
-      display: flex; gap: 1.5rem; position: relative; z-index: 1;
-      padding: 1.5rem 0;
-    }
-
-    .milestone-num {
+    .step { text-align: center; padding: 0 0.5rem; position: relative; z-index: 1; }
+    .step-num {
       width: 56px; height: 56px; border-radius: 50%;
       background: var(--navy2); border: 2px solid var(--gold);
-      display: flex; align-items: center; justify-content: center;
+      display: inline-flex; align-items: center; justify-content: center;
       font-weight: 900; font-size: 1.1rem; color: var(--gold);
-      flex-shrink: 0;
+      margin-bottom: 1rem;
     }
-
-    .milestone-content { flex: 1; }
-    .milestone-content h3 {
-      font-weight: 700; font-size: 1.05rem; margin-bottom: 0.35rem;
-    }
-    .milestone-content p { font-size: 0.9rem; color: var(--muted); }
-
-    .milestone-fee {
+    .step.fee .step-num { background: var(--gold); color: var(--navy); border-color: var(--gold); }
+    .step h4 { font-size: 0.875rem; font-weight: 700; margin-bottom: 0.4rem; line-height: 1.3; }
+    .step p { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+    .fee-tag {
+      display: inline-block; margin-top: 0.6rem;
       background: var(--gold); color: var(--navy);
-      font-size: 0.7rem; font-weight: 800; border-radius: 4px;
-      padding: 0.2rem 0.5rem; display: inline-block; margin-top: 0.5rem;
-      text-transform: uppercase; letter-spacing: 0.05em;
+      font-size: 0.65rem; font-weight: 800; border-radius: 4px;
+      padding: 0.15rem 0.5rem; text-transform: uppercase; letter-spacing: 0.05em;
     }
-
-    .milestone-free {
+    .free-tag {
+      display: inline-block; margin-top: 0.6rem;
       background: rgba(138,154,181,0.15); color: var(--muted);
-      font-size: 0.7rem; font-weight: 700; border-radius: 4px;
-      padding: 0.2rem 0.5rem; display: inline-block; margin-top: 0.5rem;
-      text-transform: uppercase; letter-spacing: 0.05em;
+      font-size: 0.65rem; font-weight: 700; border-radius: 4px;
+      padding: 0.15rem 0.5rem; text-transform: uppercase; letter-spacing: 0.05em;
     }
-
-    /* ─── WHY BITCOIN ─────────────────────── */
-    .bitcoin { background: var(--navy2); }
-
-    .cycles-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.5rem; margin-bottom: 2.5rem;
+    .process-note {
+      margin-top: 2.5rem; padding: 1.25rem 1.5rem;
+      background: rgba(245,166,35,0.06); border: 1px solid var(--border);
+      border-radius: 10px; font-size: 0.875rem; color: var(--muted); text-align: center;
     }
+    .process-note strong { color: var(--white); }
 
-    .cycle-card {
+    /* ── WHAT YOU GET ────────────────────── */
+    .getit { background: var(--navy2); }
+    .get-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start;
+    }
+    .get-list { display: flex; flex-direction: column; gap: 1.25rem; }
+    .get-item { display: flex; gap: 1rem; align-items: flex-start; }
+    .get-icon {
+      width: 44px; height: 44px; border-radius: 10px;
+      background: rgba(245,166,35,0.1); border: 1px solid rgba(245,166,35,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; flex-shrink: 0;
+    }
+    .get-item h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.25rem; }
+    .get-item p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+    .get-example {
       background: var(--card); border: 1px solid var(--border);
-      border-radius: 12px; padding: 1.5rem;
+      border-radius: 16px; padding: 2rem;
+      display: flex; flex-direction: column; gap: 0.75rem;
     }
-    .cycle-card .year { font-size: 0.75rem; color: var(--gold); font-weight: 700; margin-bottom: 0.5rem; }
-    .cycle-card .gain { font-size: 2rem; font-weight: 900; color: var(--white); margin-bottom: 0.25rem; }
-    .cycle-card .desc { font-size: 0.82rem; color: var(--muted); }
-
-    /* ─── WHO WE SERVE ────────────────────── */
-    .serve { background: var(--navy); }
-
-    .serve-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
+    .get-example h4 { font-size: 0.9rem; font-weight: 700; color: var(--gold); margin-bottom: 0.25rem; }
+    .ex-row {
+      display: flex; justify-content: space-between; padding: 0.7rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.875rem;
     }
-
-    .serve-card {
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: 14px; padding: 2rem;
-      transition: border-color 0.2s;
+    .ex-row:last-child { border-bottom: none; }
+    .ex-row .label { color: var(--muted); }
+    .ex-row .value { font-weight: 700; }
+    .ex-row .value.hi { color: var(--gold); font-size: 1rem; }
+    .ex-row .value.green { color: var(--green); }
+    .ex-outcome {
+      margin-top: 0.5rem; padding: 1rem;
+      background: rgba(74,222,128,0.06); border: 1px solid rgba(74,222,128,0.15);
+      border-radius: 8px; font-size: 0.82rem; color: var(--muted); line-height: 1.55;
     }
-    .serve-card:hover { border-color: var(--gold); }
+    .ex-outcome strong { color: var(--white); }
 
-    .serve-icon {
-      width: 48px; height: 48px; border-radius: 10px;
-      background: rgba(245,166,35,0.12); display: flex; align-items: center;
-      justify-content: center; font-size: 1.4rem; margin-bottom: 1rem;
+    /* ── FAQ ─────────────────────────────── */
+    .faq { background: var(--navy); }
+    .faq-list { max-width: 760px; display: flex; flex-direction: column; gap: 1px; }
+    .faq-item {
+      background: var(--card); border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 10px; overflow: hidden; margin-bottom: 0.5rem;
     }
-
-    .serve-card h3 { font-weight: 700; font-size: 1rem; margin-bottom: 0.5rem; }
-    .serve-card p { font-size: 0.875rem; color: var(--muted); }
-
-    .serve-tag {
-      display: inline-flex; margin-top: 1rem;
-      background: rgba(245,166,35,0.1); color: var(--gold);
-      border-radius: 4px; padding: 0.2rem 0.5rem;
-      font-size: 0.75rem; font-weight: 600;
+    .faq-q {
+      width: 100%; text-align: left; background: none; border: none;
+      color: var(--white); padding: 1.2rem 1.5rem;
+      font-size: 0.95rem; font-weight: 600; font-family: inherit;
+      cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 1rem;
     }
+    .faq-q .arrow { flex-shrink: 0; color: var(--gold); font-size: 1.2rem; transition: transform .25s; }
+    .faq-a { padding: 0 1.5rem 1.2rem; font-size: 0.875rem; color: var(--muted); line-height: 1.7; display: none; }
+    .faq-item.open .faq-a { display: block; }
+    .faq-item.open .faq-q .arrow { transform: rotate(45deg); }
 
-    /* ─── REVENUE MODEL ───────────────────── */
-    .revenue { background: var(--navy2); }
-
-    .example-box {
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: 16px; padding: 2.5rem;
-      max-width: 640px; margin: 0 auto;
-    }
-
-    .example-box h3 {
-      font-size: 1.1rem; font-weight: 700; margin-bottom: 1.5rem;
-      display: flex; align-items: center; gap: 0.5rem;
-    }
-
-    .example-row {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 0.85rem 0; border-bottom: 1px solid rgba(255,255,255,0.06);
-      font-size: 0.95rem;
-    }
-    .example-row:last-child { border-bottom: none; }
-    .example-row .lbl { color: var(--muted); }
-    .example-row .val { font-weight: 700; color: var(--white); }
-    .example-row .val.gold { color: var(--gold); font-size: 1.1rem; }
-
-    .compliance-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1rem; margin-top: 3rem;
-    }
-
-    .compliance-item {
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: 10px; padding: 1.25rem;
-    }
-    .compliance-item .badge {
-      font-size: 0.7rem; font-weight: 700; color: #4ade80;
-      background: rgba(74,222,128,0.1); border-radius: 4px;
-      padding: 0.15rem 0.5rem; margin-bottom: 0.5rem; display: inline-block;
-      text-transform: uppercase; letter-spacing: 0.05em;
-    }
-    .compliance-item p { font-size: 0.85rem; color: var(--muted); }
-    .compliance-item strong { color: var(--white); display: block; font-size: 0.9rem; margin-bottom: 0.25rem; }
-
-    /* ─── MESSAGING ───────────────────────── */
-    .messaging { background: var(--navy); }
-
-    .messages-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .msg-card {
-      border-left: 3px solid var(--gold);
-      padding: 1.5rem 1.5rem 1.5rem 1.75rem;
-      background: rgba(245,166,35,0.04);
-      border-radius: 0 12px 12px 0;
-    }
-    .msg-card .quote-mark { font-size: 2rem; color: var(--gold); line-height: 1; margin-bottom: 0.4rem; }
-    .msg-card p { font-size: 1rem; font-weight: 600; font-style: italic; margin-bottom: 0.5rem; }
-    .msg-card span { font-size: 0.82rem; color: var(--muted); }
-
-    /* ─── CTA ─────────────────────────────── */
-    .cta {
-      background: linear-gradient(135deg, #0d1b2a 0%, #1a2f4a 60%, #0d1b2a 100%);
-      text-align: center; padding: 6rem 2rem;
+    /* ── BOOKING SECTION ─────────────────── */
+    .book-section {
+      background: var(--navy2); padding: 6rem 2rem;
       position: relative; overflow: hidden;
     }
-    .cta::before {
+    .book-section::before {
       content: '';
       position: absolute; inset: 0;
-      background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(245,166,35,0.1) 0%, transparent 70%);
+      background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(245,166,35,0.07) 0%, transparent 70%);
+      pointer-events: none;
     }
-    .cta > * { position: relative; }
-    .cta h2 {
+    .book-inner {
+      max-width: 900px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start;
+      position: relative;
+    }
+    .book-left h2 {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800;
-      max-width: 700px; margin: 0 auto 1rem;
+      font-size: clamp(1.8rem, 3.5vw, 2.5rem); font-weight: 800; line-height: 1.2; margin-bottom: 1rem;
     }
-    .cta p { color: var(--muted); max-width: 520px; margin: 0 auto 2.5rem; font-size: 1.05rem; }
+    .book-left p { color: var(--muted); font-size: 0.95rem; line-height: 1.7; margin-bottom: 1.5rem; }
+    .book-perks { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+    .book-perks li { display: flex; align-items: center; gap: 0.6rem; font-size: 0.9rem; }
+    .book-perks .ck {
+      width: 20px; height: 20px; border-radius: 50%;
+      background: rgba(74,222,128,0.12); color: var(--green);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.65rem; font-weight: 900; flex-shrink: 0;
+    }
+    .book-form {
+      background: var(--navy3); border: 1px solid var(--border);
+      border-radius: 20px; padding: 2rem;
+    }
+    .book-form h3 { font-size: 1rem; font-weight: 700; margin-bottom: 1.5rem; }
 
-    .cta-form {
-      display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;
-      max-width: 520px; margin: 0 auto;
+    /* Multi-step form */
+    .form-step { display: none; }
+    .form-step.active { display: block; }
+    .step-indicator {
+      display: flex; gap: 0.4rem; margin-bottom: 1.5rem;
     }
-    .cta-form input {
-      flex: 1; min-width: 240px;
-      background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15);
-      color: var(--white); border-radius: 8px; padding: 0.85rem 1.2rem;
-      font-size: 0.95rem; font-family: inherit;
-      outline: none; transition: border-color 0.2s;
+    .step-dot {
+      flex: 1; height: 3px; border-radius: 2px;
+      background: rgba(255,255,255,0.1);
+      transition: background .3s;
     }
-    .cta-form input::placeholder { color: var(--muted); }
-    .cta-form input:focus { border-color: var(--gold); }
-    .cta-form button {
-      background: var(--gold); color: var(--navy);
-      border: none; border-radius: 8px;
-      padding: 0.85rem 1.8rem; font-weight: 700; font-size: 0.95rem;
-      cursor: pointer; font-family: inherit;
-      transition: background 0.2s;
+    .step-dot.active { background: var(--gold); }
+    .step-dot.done { background: var(--green); }
+    .form-step-label { font-size: 0.72rem; color: var(--muted); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 1rem; }
+    .btn-next {
+      width: 100%; background: var(--gold); color: var(--navy);
+      border: none; border-radius: 8px; padding: 0.85rem;
+      font-weight: 800; font-size: 0.95rem; cursor: pointer;
+      font-family: inherit; transition: background .2s; margin-top: 0.5rem;
     }
-    .cta-form button:hover { background: var(--gold2); }
+    .btn-next:hover { background: var(--gold2); }
+    .btn-back {
+      background: none; border: none; color: var(--muted);
+      font-size: 0.82rem; cursor: pointer; font-family: inherit;
+      padding: 0.5rem 0; text-align: left; text-decoration: underline;
+      margin-top: 0.5rem; display: block;
+    }
+    .success-msg {
+      text-align: center; padding: 1rem 0;
+    }
+    .success-msg .check { font-size: 3rem; margin-bottom: 1rem; }
+    .success-msg h4 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .success-msg p { font-size: 0.875rem; color: var(--muted); line-height: 1.6; }
 
-    .disclaimer {
-      font-size: 0.75rem; color: var(--muted); margin-top: 1.2rem;
-      max-width: 460px; margin-left: auto; margin-right: auto;
-    }
+    /* ── TRUST STRIP ─────────────────────── */
+    .trust { background: var(--navy3); padding: 2.5rem 2rem; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .trust-inner { max-width: 1100px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: center; gap: 2.5rem; }
+    .trust-item { display: flex; align-items: center; gap: 0.6rem; }
+    .trust-item .icon { font-size: 1.2rem; }
+    .trust-item p { font-size: 0.82rem; color: var(--muted); font-weight: 500; }
+    .trust-item strong { color: var(--white); }
 
-    /* ─── FOOTER ──────────────────────────── */
-    footer {
-      background: #080f17; padding: 3rem 2rem 2rem;
-      border-top: 1px solid var(--border);
-    }
-
-    .footer-inner {
-      max-width: 1100px; margin: 0 auto;
-      display: grid; grid-template-columns: 2fr 1fr 1fr;
-      gap: 3rem;
-    }
-
-    .footer-brand p { color: var(--muted); font-size: 0.85rem; margin-top: 0.75rem; max-width: 300px; line-height: 1.7; }
-
-    .footer-col h4 { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 1rem; }
-    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
-    .footer-col a { color: var(--muted); text-decoration: none; font-size: 0.875rem; transition: color 0.2s; }
+    /* ── FOOTER ──────────────────────────── */
+    footer { background: #080f17; padding: 3rem 2rem 5rem; border-top: 1px solid var(--border); }
+    .footer-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; }
+    .footer-brand p { color: var(--muted); font-size: 0.82rem; margin-top: 0.75rem; max-width: 300px; line-height: 1.7; }
+    .footer-col h4 { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 1rem; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .footer-col a { color: var(--muted); text-decoration: none; font-size: 0.85rem; transition: color .2s; }
     .footer-col a:hover { color: var(--white); }
+    .footer-bottom { max-width: 1100px; margin: 2rem auto 0; border-top: 1px solid var(--border); padding-top: 1.5rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .footer-bottom p { font-size: 0.75rem; color: var(--muted); }
+    .footer-legal { max-width: 1100px; margin: 1.25rem auto 0; font-size: 0.7rem; color: #4a5a6a; line-height: 1.65; }
 
-    .footer-bottom {
-      max-width: 1100px; margin: 2rem auto 0;
-      border-top: 1px solid var(--border); padding-top: 1.5rem;
-      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
-    }
-    .footer-bottom p { font-size: 0.78rem; color: var(--muted); }
-    .footer-legal { font-size: 0.72rem; color: var(--muted); max-width: 1100px; margin: 1rem auto 0; line-height: 1.6; }
-
-    /* ─── SVG LOGO ────────────────────────── */
-    .logo-svg { width: 100%; height: auto; }
-
-    /* ─── RESPONSIVE ──────────────────────── */
-    @media (max-width: 768px) {
-      nav { padding: 0.9rem 1.2rem; }
-      .nav-links { display: none; }
-
-      .problem-grid { grid-template-columns: 1fr; }
-      .problem-card { display: none; }
-
+    /* ── RESPONSIVE ──────────────────────── */
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-card { max-width: 480px; }
+      .steps { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+      .steps::before { display: none; }
+      .get-grid { grid-template-columns: 1fr; }
+      .book-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .pain-grid { grid-template-columns: 1fr; }
       .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
-      .footer-bottom { flex-direction: column; text-align: center; }
-
-      .milestones::before { left: 22px; }
-      .milestone-num { width: 44px; height: 44px; font-size: 0.9rem; }
-
-      section { padding: 3.5rem 1.2rem; }
-      .hero { padding: 6rem 1.2rem 3rem; }
+      .footer-bottom { flex-direction: column; }
+    }
+    @media (max-width: 600px) {
+      .steps { grid-template-columns: 1fr; }
+      section.std { padding: 3.5rem 1.2rem; }
+      .pain { padding: 3.5rem 1.2rem; }
+      .book-section { padding: 4rem 1.2rem; }
+      .book-form { padding: 1.5rem; }
+      footer { padding-bottom: 6rem; }
     }
   </style>
 </head>
 <body>
 
-<!-- ─── NAV ─────────────────────────────── -->
+<!-- NAV -->
 <nav>
   <a href="#" class="nav-logo">
-    <svg class="logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M20 3L37 14V26L20 37L3 26V14L20 3Z" fill="#0d1b2a" stroke="#f5a623" stroke-width="1.5"/>
       <path d="M20 6L34 16V24L20 34L6 24V16L20 6Z" fill="#122033"/>
       <circle cx="20" cy="20" r="8" fill="#f5a623"/>
@@ -496,363 +423,421 @@
   </a>
   <ul class="nav-links">
     <li><a href="#how-it-works">How It Works</a></li>
-    <li><a href="#why-bitcoin">Why Bitcoin</a></li>
-    <li><a href="#who-we-serve">Who We Serve</a></li>
-    <li><a href="#model">Our Model</a></li>
-    <li><a href="#consult" class="nav-cta">Book a Consult</a></li>
+    <li><a href="#what-you-get">What You Get</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#book" class="nav-book">Book Free Consult</a></li>
   </ul>
 </nav>
 
+<!-- STICKY MOBILE BAR -->
+<div class="sticky-bar">
+  <a href="#book">Book Your Free Consultation →</a>
+</div>
+
 <!-- ─── HERO ─────────────────────────────── -->
 <section class="hero">
-  <div class="hero-badge">
-    <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="6"/></svg>
-    California-Based · Education-Only · Non-Custodial
-  </div>
-  <h1>Turn Your <em>Home Equity</em> Into<br/>Sovereign Digital Wealth</h1>
-  <p class="hero-sub">Equity2Bitcoin is the compliant, milestone-based consulting firm helping homeowners responsibly unlock dormant equity and position it into Bitcoin — without intermediaries, custodians, or guesswork.</p>
-  <div class="hero-actions">
-    <a href="#consult" class="btn-primary">Book a Free Consultation</a>
-    <a href="#how-it-works" class="btn-outline">See How It Works</a>
-  </div>
-  <div class="hero-stats">
-    <div class="hero-stat">
-      <strong>$17.2T</strong>
-      <span>U.S. Home Equity Available</span>
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-badge">🏠 For Homeowners with $150K+ in Equity</div>
+      <h1>Your Home Equity Is<br/><em>Working Against You.</em><br/>Bitcoin Can Fix That.</h1>
+      <p class="hero-sub">You've built equity in your home. But inflation is quietly eroding it. Equity2Bitcoin guides you — step by step — through a compliant, fully educational process to convert that dormant equity into Bitcoin. No guesswork. No middlemen. You stay in control.</p>
+      <ul class="hero-checks">
+        <li><div class="ck">✓</div> Free consultation — zero obligation, zero pressure</li>
+        <li><div class="ck">✓</div> Education-only: we never touch your money or Bitcoin</li>
+        <li><div class="ck">✓</div> You only pay a fee when your loan is funded — nothing before</li>
+        <li><div class="ck">✓</div> Fully compliant — built around California &amp; federal guidelines</li>
+      </ul>
+      <div class="hero-social">
+        <div class="avatar-row">
+          <div class="avatar">BN</div>
+          <div class="avatar">JR</div>
+          <div class="avatar">KM</div>
+          <div class="avatar">TP</div>
+        </div>
+        <p>Homeowners across California are already on the path. Join them.</p>
+      </div>
     </div>
-    <div class="hero-stat">
-      <strong>$299K</strong>
-      <span>Avg. Tappable Equity per Homeowner</span>
+
+    <!-- QUICK BOOK CARD in Hero -->
+    <div class="hero-card" id="hero-form">
+      <h3>Book Your Free Consultation</h3>
+      <p class="sub">Takes 2 minutes. We'll reach out within 24 hours.</p>
+
+      <div class="field">
+        <label>Full Name</label>
+        <input type="text" id="hf-name" placeholder="Jane Smith" />
+      </div>
+      <div class="field">
+        <label>Email Address</label>
+        <input type="email" id="hf-email" placeholder="jane@example.com" />
+      </div>
+      <div class="field">
+        <label>Phone Number</label>
+        <input type="tel" id="hf-phone" placeholder="(555) 000-0000" />
+      </div>
+      <div class="field">
+        <label>Estimated Home Equity</label>
+        <select id="hf-equity">
+          <option value="" disabled selected>Select a range…</option>
+          <option>$150,000 – $250,000</option>
+          <option>$250,000 – $400,000</option>
+          <option>$400,000 – $600,000</option>
+          <option>$600,000+</option>
+          <option>Not sure yet</option>
+        </select>
+      </div>
+      <button class="btn-book" onclick="submitHeroForm()">Schedule My Free Consultation →</button>
+      <p class="card-disclaimer">For educational purposes only. Not financial advice. We never share your information. No payment required.</p>
     </div>
-    <div class="hero-stat">
-      <strong>&lt;3%</strong>
-      <span>Homeowners Using Equity for Bitcoin</span>
-    </div>
-    <div class="hero-stat">
-      <strong>30%</strong>
-      <span>Success Fee — Only on Results</span>
+    <div class="hero-card" id="hero-success" style="display:none; text-align:center; padding:3rem 2rem;">
+      <div style="font-size:3rem; margin-bottom:1rem;">🎉</div>
+      <h3 style="margin-bottom:0.5rem;">You're on the list!</h3>
+      <p style="color:var(--muted); font-size:0.9rem; line-height:1.6;">We'll reach out within 24 hours to schedule your free consultation. Check your inbox for a confirmation email.</p>
     </div>
   </div>
 </section>
 
-<!-- ─── PROBLEM ───────────────────────────── -->
-<section class="problem" id="problem">
+<!-- ─── PAIN POINTS ───────────────────────── -->
+<section class="pain">
   <div class="container">
-    <div class="problem-grid">
-      <div class="problem-text">
-        <p class="section-label">The Opportunity</p>
-        <h2 class="section-title">Your Equity Is Sleeping.<br/>Bitcoin Isn't Waiting.</h2>
-        <div class="quote">
-          "Millions of American homeowners sit on record levels of home equity while Bitcoin adoption remains slow among middle-class asset holders who lack structured, safe pathways for entry."
-        </div>
-        <ul class="problem-points">
-          <li>
-            <div class="icon">🏠</div>
-            <p><strong>Record equity, zero strategy.</strong> The average U.S. homeowner holds $299,000+ in tappable equity — most of it sitting idle, losing purchasing power to inflation.</p>
-          </li>
-          <li>
-            <div class="icon">🔒</div>
-            <p><strong>No clear on-ramp to Bitcoin.</strong> Traditional banks and advisers restrict or discourage equity-to-crypto strategies, leaving homeowners without a compliant pathway.</p>
-          </li>
-          <li>
-            <div class="icon">📚</div>
-            <p><strong>Education gap is the only barrier.</strong> Those who have converted equity to Bitcoin early have captured generational wealth. The missing piece is structured guidance.</p>
-          </li>
-        </ul>
+    <p class="section-label" style="text-align:center;">Does This Sound Like You?</p>
+    <h2 class="section-title" style="text-align:center; max-width:600px; margin:0 auto 0.5rem;">You Built Real Wealth in Your Home.<br/>Now What?</h2>
+    <p style="text-align:center; color:var(--muted); margin-bottom:2.5rem; font-size:0.95rem; max-width:500px; margin-left:auto; margin-right:auto;">Millions of homeowners are in the same position. You're not alone — and there's a structured path forward.</p>
+    <div class="pain-grid">
+      <div class="pain-card">
+        <div class="pain-icon">😤</div>
+        <h3>"My equity is just sitting there."</h3>
+        <p>You've watched your home value climb, but that $200K–$400K in equity isn't making you any money. It's actually losing purchasing power to inflation every single year.</p>
       </div>
-      <div class="problem-card">
-        <div class="stat-box">
-          <div class="number">$17.2T</div>
-          <div class="label">Total U.S. Tappable Home Equity (2025)</div>
-        </div>
-        <div class="stat-box">
-          <div class="number">142%</div>
-          <div class="label">Avg. Home Equity Growth, 2020–2025</div>
-        </div>
-        <div class="stat-box">
-          <div class="number">1.2M+</div>
-          <div class="label">New HELOCs Opened in 2024 Alone</div>
-        </div>
-        <div class="stat-box">
-          <div class="number">$2.25T</div>
-          <div class="label">Bitcoin Market Cap (2025)</div>
-        </div>
+      <div class="pain-card">
+        <div class="pain-icon">🤷</div>
+        <h3>"I'm curious about Bitcoin but don't know where to start."</h3>
+        <p>Bitcoin sounds compelling, but the process of buying it safely — let alone funding it with a HELOC — feels complicated and risky without a real guide.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">🚫</div>
+        <h3>"My bank or adviser won't help with this."</h3>
+        <p>Traditional lenders and financial advisers either can't or won't guide you into Bitcoin. That leaves a massive gap — and that's exactly what Equity2Bitcoin fills.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ─── HOW IT WORKS ──────────────────────── -->
-<section class="how" id="how-it-works">
+<!-- ─── TRUST STRIP ────────────────────────── -->
+<div class="trust">
+  <div class="trust-inner">
+    <div class="trust-item"><span class="icon">🔒</span><p><strong>Non-Custodial</strong> — we never hold your money or Bitcoin</p></div>
+    <div class="trust-item"><span class="icon">📚</span><p><strong>Education-Only</strong> — not an investment adviser or loan broker</p></div>
+    <div class="trust-item"><span class="icon">✅</span><p><strong>No Hidden Fees</strong> — you pay only when your loan funds</p></div>
+    <div class="trust-item"><span class="icon">🏛️</span><p><strong>Fully Compliant</strong> — structured around California &amp; federal guidelines</p></div>
+    <div class="trust-item"><span class="icon">🛡️</span><p><strong>You Stay In Control</strong> — every decision is yours alone</p></div>
+  </div>
+</div>
+
+<!-- ─── HOW IT WORKS ───────────────────────── -->
+<section class="std process" id="how-it-works">
   <div class="container">
-    <p class="section-label">The Five Milestones</p>
-    <h2 class="section-title">A Structured Path From<br/>Home Equity to Bitcoin</h2>
-    <p class="section-sub">Our milestone-based framework walks you step-by-step through the process. You stay in complete control. We earn a fee only when your loan funds — at no other point.</p>
+    <p class="section-label">The Process</p>
+    <h2 class="section-title">Five Clear Steps.<br/>One Powerful Outcome.</h2>
+    <p class="section-sub">We walk you through every stage — from understanding your equity to securing Bitcoin in your own custody. There are no surprises, and you're never on your own.</p>
 
-    <div class="milestones">
-      <div class="milestone">
-        <div class="milestone-num">1</div>
-        <div class="milestone-content">
-          <h3>Equity Profile Review &amp; Education</h3>
-          <p>We teach you how home equity works, analyze your HELOC/refi options, and deliver a customized <em>Equity-to-Bitcoin Readiness Report</em>. You learn exactly how much equity is available and how it maps to Bitcoin's halving cycle.</p>
-          <span class="milestone-free">No Fee</span>
-        </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h4>Equity Profile Review</h4>
+        <p>We analyze your home value, loan-to-value ratio, and cash-out options to build your personalized Readiness Report.</p>
+        <span class="free-tag">Free</span>
       </div>
-
-      <div class="milestone">
-        <div class="milestone-num">2</div>
-        <div class="milestone-content">
-          <h3>Loan Preparation &amp; Documentation</h3>
-          <p>We guide you through every document needed for a HELOC, cash-out refinance, or portfolio line of credit — from underwriting criteria to submission checklists. You're ready before you ever meet a lender.</p>
-          <span class="milestone-free">No Fee</span>
-        </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h4>Loan Preparation</h4>
+        <p>We guide you through every document a lender will need — so you walk in prepared and confident.</p>
+        <span class="free-tag">Free</span>
       </div>
-
-      <div class="milestone">
-        <div class="milestone-num">3</div>
-        <div class="milestone-content">
-          <h3>Loan Approval &amp; Funding</h3>
-          <p>You submit your application to a licensed lender. We coordinate the timeline, confirm your approval, and verify draw authorization. Once your funds are received, our success fee is triggered — and only then.</p>
-          <span class="milestone-fee">⚡ 30% Success Fee — This Milestone Only</span>
-        </div>
+      <div class="step fee">
+        <div class="step-num">3</div>
+        <h4>Loan Approval &amp; Funding</h4>
+        <p>You submit to a licensed lender. Once your funds arrive, this is the only milestone that triggers our fee.</p>
+        <span class="fee-tag">30% Fee — Here Only</span>
       </div>
-
-      <div class="milestone">
-        <div class="milestone-num">4</div>
-        <div class="milestone-content">
-          <h3>Bitcoin Integration &amp; Custody Education</h3>
-          <p>We educate you on buying Bitcoin through regulated exchanges (Swan, Unchained, Casa), managing private keys, securing hardware wallets, and long-term holding strategy. You execute every transaction yourself.</p>
-          <span class="milestone-free">No Fee</span>
-        </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h4>Bitcoin Education</h4>
+        <p>We teach you how to buy Bitcoin safely through regulated platforms and secure it in your own hardware wallet.</p>
+        <span class="free-tag">Free</span>
       </div>
-
-      <div class="milestone">
-        <div class="milestone-num">5</div>
-        <div class="milestone-content">
-          <h3>Verification &amp; Documentation</h3>
-          <p>We collect third-party proof of your loan closing, Bitcoin purchase, and wallet setup, then issue your final <em>Milestone Completion Packet</em>. Your engagement is fully documented for transparency and compliance.</p>
-          <span class="milestone-free">No Fee</span>
-        </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <h4>Verification &amp; Completion</h4>
+        <p>We document every milestone, verify your setup, and hand you a full Completion Packet for your records.</p>
+        <span class="free-tag">Free</span>
       </div>
     </div>
 
-    <div style="margin-top:3rem; padding:1.5rem; background:rgba(245,166,35,0.06); border:1px solid var(--border); border-radius:12px; text-align:center;">
-      <p style="font-size:0.95rem; color:var(--muted);">
-        <strong style="color:var(--white);">Client in Full Control.</strong> Equity2Bitcoin never touches your money, Bitcoin, or lending instruments. We are a purely educational and milestone consulting entity.
-      </p>
+    <p class="process-note"><strong>Important:</strong> Equity2Bitcoin earns a 30% consulting fee only at Step 3 — when your home equity loan is verified and funded. All other steps are included at no charge. You only pay for a real result.</p>
+
+    <div style="text-align:center; margin-top:2.5rem;">
+      <a href="#book" style="display:inline-block; background:var(--gold); color:var(--navy); padding:0.9rem 2.5rem; border-radius:8px; font-weight:800; font-size:1rem; text-decoration:none; transition:background .2s;" onmouseover="this.style.background='#e09510'" onmouseout="this.style.background='#f5a623'">Start With a Free Consultation →</a>
     </div>
   </div>
 </section>
 
-<!-- ─── WHY BITCOIN ────────────────────────── -->
-<section class="bitcoin" id="why-bitcoin">
+<!-- ─── WHAT YOU GET ───────────────────────── -->
+<section class="std getit" id="what-you-get">
   <div class="container">
-    <p class="section-label">Strategy Overview</p>
-    <h2 class="section-title">Why Bitcoin, Why Now</h2>
-    <p class="section-sub">Bitcoin's four-year halving cycle has created the most consistent wealth-compounding pattern of any asset in modern history. Each cycle peaks higher. Each cycle rewards those who positioned early.</p>
+    <div class="get-grid">
+      <div>
+        <p class="section-label">What You Get</p>
+        <h2 class="section-title">Everything You Need.<br/>Nothing You Don't.</h2>
+        <p class="section-sub">Our consulting framework gives you the education, documentation, and expert guidance that banks and advisers can't — or won't — provide.</p>
+        <div class="get-list">
+          <div class="get-item">
+            <div class="get-icon">📊</div>
+            <div>
+              <h4>Personalized Equity-to-Bitcoin Readiness Report</h4>
+              <p>A custom analysis of your home's tappable equity, HELOC options, and how it maps to Bitcoin's current cycle — delivered after your first session.</p>
+            </div>
+          </div>
+          <div class="get-item">
+            <div class="get-icon">📋</div>
+            <div>
+              <h4>Complete Loan Documentation Guidance</h4>
+              <p>Step-by-step checklists and workflow templates so you walk into your lender fully prepared. No surprises, no missed paperwork.</p>
+            </div>
+          </div>
+          <div class="get-item">
+            <div class="get-icon">₿</div>
+            <div>
+              <h4>Bitcoin Integration &amp; Custody Education</h4>
+              <p>Learn how to buy Bitcoin on regulated platforms (Swan, Unchained, Casa) and secure it in your own hardware wallet — safely and independently.</p>
+            </div>
+          </div>
+          <div class="get-item">
+            <div class="get-icon">🛡️</div>
+            <div>
+              <h4>Full Milestone Completion Packet</h4>
+              <p>Timestamped documentation of every milestone, third-party verification, and a compliance-ready record of the full engagement for your files.</p>
+            </div>
+          </div>
+        </div>
+      </div>
 
-    <div class="cycles-grid">
-      <div class="cycle-card">
-        <div class="year">2012 Halving → 2013 Bull Run</div>
-        <div class="gain">~90×</div>
-        <div class="desc">BTC surged from ~$12 to $1,100 within 12 months of the first halving.</div>
+      <div>
+        <div class="get-example">
+          <h4>📌 Real Example — How It Plays Out</h4>
+          <div class="ex-row"><span class="label">Home Value</span><span class="value">$700,000</span></div>
+          <div class="ex-row"><span class="label">Remaining Mortgage</span><span class="value">$400,000</span></div>
+          <div class="ex-row"><span class="label">Extractable Equity (HELOC)</span><span class="value hi">$300,000</span></div>
+          <div class="ex-row"><span class="label">Equity2Bitcoin Consulting Fee</span><span class="value">$90,000 (30%)</span></div>
+          <div class="ex-row"><span class="label">Client's Capital to Deploy</span><span class="value hi">$210,000</span></div>
+          <div class="ex-row"><span class="label">Approximate Bitcoin Acquired*</span><span class="value green">3 – 5 BTC</span></div>
+          <div class="ex-outcome">
+            <strong>Outcome:</strong> Client independently owns 3–5 BTC in self-custody, retains full ownership of their home, and holds both a physical and digital hard asset. Equity2Bitcoin never touched the funds.
+          </div>
+          <p style="font-size:0.7rem; color:#4a5a6a; margin-top:0.75rem;">*Approximate BTC amount based on prevailing prices at time of purchase. Bitcoin is volatile. This is not a guaranteed return or investment recommendation.</p>
+        </div>
       </div>
-      <div class="cycle-card">
-        <div class="year">2016 Halving → 2017 Bull Run</div>
-        <div class="gain">~30×</div>
-        <div class="desc">From ~$650 pre-halving to nearly $20,000 at peak — a 30x cycle.</div>
-      </div>
-      <div class="cycle-card">
-        <div class="year">2020 Halving → 2021 Bull Run</div>
-        <div class="gain">~8×</div>
-        <div class="desc">BTC went from ~$8,500 to $67,000+ — a 1,000%+ rise post-halving.</div>
-      </div>
-      <div class="cycle-card">
-        <div class="year">2024 Halving → Current Cycle</div>
-        <div class="gain">?×</div>
-        <div class="desc">April 2024 halving is underway. Historical patterns suggest strong upside through 2025–2026.</div>
-      </div>
-    </div>
-
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; margin-top:1rem;">
-      <div style="background:var(--card); border:1px solid var(--border); border-radius:12px; padding:1.5rem;">
-        <h3 style="font-size:1rem; margin-bottom:0.75rem; color:var(--gold);">Fixed Supply = Digital Scarcity</h3>
-        <p style="font-size:0.875rem; color:var(--muted);">Bitcoin's 21 million coin cap and sub-1% annual supply growth (post-2024 halving) makes it the hardest asset ever created — an inflation-resistant store of value as fiat currency continues to expand.</p>
-      </div>
-      <div style="background:var(--card); border:1px solid var(--border); border-radius:12px; padding:1.5rem;">
-        <h3 style="font-size:1rem; margin-bottom:0.75rem; color:var(--gold);">Institutional Tailwind</h3>
-        <p style="font-size:0.875rem; color:var(--muted);">Bitcoin ETFs, corporate treasury adoption (MicroStrategy: 640,000+ BTC), and state-level treasury models validate Bitcoin's maturation as a global asset class — while retail access remains wide open.</p>
-      </div>
-    </div>
-
-    <div style="margin-top:1.5rem; background:rgba(245,166,35,0.06); border:1px solid var(--border); border-radius:12px; padding:1.5rem; text-align:center;">
-      <p style="font-size:0.85rem; color:var(--muted);">⚠️ <strong style="color:var(--white);">Volatility Acknowledgment:</strong> Bitcoin is highly volatile. 50–80%+ drawdowns have occurred in every cycle. This strategy is designed for capital you can hold for multi-year periods, aligned to halving cycle timelines. Past performance does not guarantee future results.</p>
     </div>
   </div>
 </section>
 
-<!-- ─── WHO WE SERVE ───────────────────────── -->
-<section class="serve" id="who-we-serve">
+<!-- ─── FAQ ───────────────────────────────── -->
+<section class="std faq" id="faq">
   <div class="container">
-    <p class="section-label">Target Market</p>
-    <h2 class="section-title">Who Equity2Bitcoin Serves</h2>
-    <p class="section-sub">Our clients are equity-rich, Bitcoin-curious homeowners seeking a structured, compliant pathway to activate dormant wealth.</p>
+    <p class="section-label">Common Questions</p>
+    <h2 class="section-title">Everything You're Wondering,<br/>Answered Honestly.</h2>
 
-    <div class="serve-grid">
-      <div class="serve-card">
-        <div class="serve-icon">🏡</div>
-        <h3>Middle-Class Homeowners (Ages 35–60)</h3>
-        <p>Own homes with $150K–$600K in built-up equity. Income $75K–$200K/year. Feel "locked out" of high-yield digital opportunities. Seek autonomy, legacy, and financial sovereignty without Wall Street dependency.</p>
-        <span class="serve-tag">Primary</span>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Is this legal? <span class="arrow">+</span>
+        </button>
+        <div class="faq-a">Yes. Equity2Bitcoin operates as an educational consulting firm under the publisher's exemption — we provide general education, not personalized financial or investment advice. We do not broker loans, handle funds, or touch your Bitcoin. All actual transactions are carried out by you and by licensed third-party lenders. Our model is designed around California DFPI guidelines, federal consumer protection rules, and IRS tax integrity standards.</div>
       </div>
-      <div class="serve-card">
-        <div class="serve-icon">📐</div>
-        <h3>Real Estate Investors &amp; Refinancers</h3>
-        <p>Already familiar with cash-out refis and HELOCs. Understand leverage mechanics but lack crypto integration knowledge. Aged 40–65 with multiple properties, interested in converting one property's equity into a long-term Bitcoin reserve.</p>
-        <span class="serve-tag">Secondary</span>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Do I have to pay anything upfront? <span class="arrow">+</span>
+        </button>
+        <div class="faq-a">No. Steps 1, 2, 4, and 5 are all included at no charge. Our 30% consulting fee is only triggered at Step 3 — when your lender confirms your loan is funded. You pay nothing until there's a verified result. There are no retainers, application fees, or hidden costs.</div>
       </div>
-      <div class="serve-card">
-        <div class="serve-icon">💡</div>
-        <h3>Bitcoin-Curious Professionals</h3>
-        <p>Tech, logistics, and service professionals earning $100K+. Value an education-first, milestone-accountability approach. Seeking a transparent framework — not a sales pitch or speculative play.</p>
-        <span class="serve-tag">Tertiary</span>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What if Bitcoin's price drops after I buy? <span class="arrow">+</span>
+        </button>
+        <div class="faq-a">Bitcoin is highly volatile — 50–80% drawdowns have occurred in every market cycle. Our consulting fee is tied to the milestone of your loan being funded, not to Bitcoin's price or your returns. We're honest about this from day one. This strategy is best suited for homeowners with a multi-year time horizon who understand they're positioning for Bitcoin's halving cycles, not short-term gains. We strongly recommend consulting a licensed financial adviser before making any investment decision.</div>
       </div>
-    </div>
-
-    <!-- Case Study -->
-    <div style="margin-top:3rem; background:var(--card); border:1px solid var(--border); border-radius:16px; padding:2rem;">
-      <p class="section-label" style="margin-bottom:0.5rem;">Example Scenario</p>
-      <h3 style="font-size:1.1rem; margin-bottom:1.5rem;">How It Works in Practice</h3>
-      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1rem;">
-        <div style="padding:1rem; background:rgba(255,255,255,0.03); border-radius:8px;">
-          <p style="font-size:0.75rem; color:var(--muted); margin-bottom:0.25rem;">Home Value</p>
-          <p style="font-weight:700; font-size:1.1rem;">$700,000</p>
-        </div>
-        <div style="padding:1rem; background:rgba(255,255,255,0.03); border-radius:8px;">
-          <p style="font-size:0.75rem; color:var(--muted); margin-bottom:0.25rem;">Remaining Mortgage</p>
-          <p style="font-weight:700; font-size:1.1rem;">$400,000</p>
-        </div>
-        <div style="padding:1rem; background:rgba(255,255,255,0.03); border-radius:8px;">
-          <p style="font-size:0.75rem; color:var(--muted); margin-bottom:0.25rem;">Extractable Equity</p>
-          <p style="font-weight:700; font-size:1.1rem; color:var(--gold);">$300,000</p>
-        </div>
-        <div style="padding:1rem; background:rgba(255,255,255,0.03); border-radius:8px;">
-          <p style="font-size:0.75rem; color:var(--muted); margin-bottom:0.25rem;">Consulting Fee (30%)</p>
-          <p style="font-weight:700; font-size:1.1rem;">$90,000</p>
-        </div>
-        <div style="padding:1rem; background:rgba(245,166,35,0.08); border-radius:8px; border:1px solid var(--border);">
-          <p style="font-size:0.75rem; color:var(--muted); margin-bottom:0.25rem;">Client Outcome</p>
-          <p style="font-weight:700; font-size:1rem; color:var(--gold);">3–5 BTC secured independently, full property &amp; loan autonomy retained</p>
-        </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Does Equity2Bitcoin handle my money or Bitcoin? <span class="arrow">+</span>
+        </button>
+        <div class="faq-a">Never. We are a non-custodial, education-only consulting firm. Your loan proceeds go directly from your lender to you. Your Bitcoin goes directly from the exchange to your personal hardware wallet. At no point does Equity2Bitcoin touch, hold, transmit, or manage any of your funds or digital assets.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Do I need to be in California? <span class="arrow">+</span>
+        </button>
+        <div class="faq-a">Our pilot program is based in California, but we can work with homeowners across the U.S. depending on your state's lending laws. During your free consultation, we'll confirm whether we can serve your area and connect you with appropriate licensed lenders in your state.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          How much equity do I need to qualify? <span class="arrow">+</span>
+        </button>
+        <div class="faq-a">We recommend at least $150,000 in tappable equity to make the engagement worthwhile for you. Most of our clients have between $200,000 and $500,000 in extractable equity. If you're unsure of your equity position, your free consultation will include a preliminary review at no cost.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What happens in the free consultation? <span class="arrow">+</span>
+        </button>
+        <div class="faq-a">We spend 30–45 minutes learning about your home equity position, your financial goals, and your familiarity with Bitcoin. We walk you through the five-milestone process, answer your questions honestly, and determine whether there's a fit. There's no sales pressure and no obligation to move forward. You leave with clarity either way.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ─── REVENUE MODEL ─────────────────────── -->
-<section class="revenue" id="model">
-  <div class="container" style="text-align:center;">
-    <p class="section-label">Our Model</p>
-    <h2 class="section-title">Transparent. Milestone-Based. Compliant.</h2>
-    <p class="section-sub" style="margin:0 auto 3rem;">Our 30% success fee is tied exclusively to verified loan funding — not Bitcoin's price, not investment performance, not promises. You only pay for results.</p>
-
-    <div class="example-box">
-      <h3>📋 Fee Breakdown — $300,000 Equity Extraction</h3>
-      <div class="example-row">
-        <span class="lbl">Phase 1 – Education &amp; Readiness Report</span>
-        <span class="val" style="color:#4ade80;">$0</span>
-      </div>
-      <div class="example-row">
-        <span class="lbl">Phase 2 – Loan Preparation &amp; Docs</span>
-        <span class="val" style="color:#4ade80;">$0</span>
-      </div>
-      <div class="example-row">
-        <span class="lbl">Phase 3 – Loan Approved &amp; Funded</span>
-        <span class="val gold">$90,000 ← Fee Triggered Here</span>
-      </div>
-      <div class="example-row">
-        <span class="lbl">Phase 4 – Bitcoin Custody Education</span>
-        <span class="val" style="color:#4ade80;">$0</span>
-      </div>
-      <div class="example-row">
-        <span class="lbl">Phase 5 – Verification &amp; Completion Pack</span>
-        <span class="val" style="color:#4ade80;">$0</span>
-      </div>
+<!-- ─── BOOKING SECTION ────────────────────── -->
+<section class="book-section" id="book">
+  <div class="book-inner">
+    <div class="book-left">
+      <p class="section-label">Book Your Free Consultation</p>
+      <h2>Ready to Put Your Equity<br/>to Work?</h2>
+      <p>Schedule a free 30–45 minute consultation with our team. We'll review your equity position, walk you through the process, and answer every question you have — no obligation, no upsells.</p>
+      <ul class="book-perks">
+        <li><div class="ck">✓</div> 100% free — no credit card, no commitment</li>
+        <li><div class="ck">✓</div> We'll send your free Equity-to-Bitcoin Readiness Report</li>
+        <li><div class="ck">✓</div> Learn if you qualify (you need $150K+ in equity)</li>
+        <li><div class="ck">✓</div> Ask anything — we answer honestly</li>
+        <li><div class="ck">✓</div> Virtual session — available nationwide</li>
+      </ul>
     </div>
 
-    <div class="compliance-grid">
-      <div class="compliance-item">
-        <div class="badge">✓ Compliant</div>
-        <strong>RIA Exemption</strong>
-        <p>Operates under the publisher's exemption — general education, not tailored financial advice.</p>
+    <div class="book-form" id="booking-form-container">
+      <h3>Schedule Your Consultation</h3>
+
+      <!-- Step indicator -->
+      <div class="step-indicator">
+        <div class="step-dot active" id="dot-1"></div>
+        <div class="step-dot" id="dot-2"></div>
+        <div class="step-dot" id="dot-3"></div>
       </div>
-      <div class="compliance-item">
-        <div class="badge">✓ Non-Custodial</div>
-        <strong>No Loan Brokerage</strong>
-        <p>Partners with licensed lenders. Equity2Bitcoin never arranges or handles loans or funds.</p>
+
+      <!-- Step 1: About You -->
+      <div class="form-step active" id="bstep-1">
+        <p class="form-step-label">Step 1 of 3 — About You</p>
+        <div class="field">
+          <label>Full Name *</label>
+          <input type="text" id="b-name" placeholder="Jane Smith" />
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Email *</label>
+            <input type="email" id="b-email" placeholder="jane@email.com" />
+          </div>
+          <div class="field">
+            <label>Phone *</label>
+            <input type="tel" id="b-phone" placeholder="(555) 000-0000" />
+          </div>
+        </div>
+        <div class="field">
+          <label>State You Live In</label>
+          <select id="b-state">
+            <option value="" disabled selected>Select your state…</option>
+            <option>California</option><option>Texas</option><option>Florida</option>
+            <option>New York</option><option>Arizona</option><option>Nevada</option>
+            <option>Washington</option><option>Oregon</option><option>Colorado</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <button class="btn-next" onclick="nextStep(1)">Continue →</button>
       </div>
-      <div class="compliance-item">
-        <div class="badge">✓ Crypto-Neutral</div>
-        <strong>Client-Executed</strong>
-        <p>All Bitcoin purchases are made independently by clients. We educate — you execute.</p>
+
+      <!-- Step 2: Your Home -->
+      <div class="form-step" id="bstep-2">
+        <p class="form-step-label">Step 2 of 3 — Your Home Equity</p>
+        <div class="field">
+          <label>Estimated Home Value</label>
+          <select id="b-value">
+            <option value="" disabled selected>Select a range…</option>
+            <option>Under $400,000</option>
+            <option>$400,000 – $600,000</option>
+            <option>$600,000 – $900,000</option>
+            <option>$900,000 – $1.5M</option>
+            <option>$1.5M+</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Estimated Remaining Mortgage</label>
+          <select id="b-mortgage">
+            <option value="" disabled selected>Select a range…</option>
+            <option>Under $100,000</option>
+            <option>$100,000 – $250,000</option>
+            <option>$250,000 – $450,000</option>
+            <option>$450,000 – $700,000</option>
+            <option>Over $700,000</option>
+            <option>I own my home outright</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Have you used a HELOC or cash-out refi before?</label>
+          <select id="b-heloc">
+            <option value="" disabled selected>Select one…</option>
+            <option>Yes — I'm familiar with the process</option>
+            <option>No — but I'm open to learning</option>
+            <option>No — and I have questions about it</option>
+          </select>
+        </div>
+        <button class="btn-next" onclick="nextStep(2)">Continue →</button>
+        <button class="btn-back" onclick="prevStep(2)">← Back</button>
       </div>
-      <div class="compliance-item">
-        <div class="badge">✓ Tax Integrity</div>
-        <strong>Structured Invoicing</strong>
-        <p>Milestone contracts and invoices for transparent, clean tax reporting at every step.</p>
+
+      <!-- Step 3: Schedule -->
+      <div class="form-step" id="bstep-3">
+        <p class="form-step-label">Step 3 of 3 — Preferred Call Time</p>
+        <div class="field">
+          <label>Preferred Day</label>
+          <select id="b-day">
+            <option value="" disabled selected>Select a day…</option>
+            <option>Monday</option><option>Tuesday</option><option>Wednesday</option>
+            <option>Thursday</option><option>Friday</option><option>Any weekday</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Preferred Time (Pacific Time)</label>
+          <select id="b-time">
+            <option value="" disabled selected>Select a time window…</option>
+            <option>Morning (9 AM – 12 PM PT)</option>
+            <option>Afternoon (12 PM – 3 PM PT)</option>
+            <option>Late Afternoon (3 PM – 6 PM PT)</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Anything You'd Like Us to Know? <span style="font-weight:400;">(optional)</span></label>
+          <input type="text" id="b-notes" placeholder="Questions, goals, concerns…" />
+        </div>
+        <button class="btn-next" onclick="submitBooking()">Book My Free Consultation →</button>
+        <button class="btn-back" onclick="prevStep(3)">← Back</button>
       </div>
+
+      <!-- Success -->
+      <div class="form-step" id="bstep-success">
+        <div class="success-msg">
+          <div class="check">🎉</div>
+          <h4>Consultation Requested!</h4>
+          <p>Thank you! A member of our team will reach out within <strong>24 hours</strong> to confirm your call time. Check your inbox for a confirmation email.</p>
+          <p style="margin-top:1rem;">In the meantime, scroll down to read our educational disclaimer and learn more about the process.</p>
+        </div>
+      </div>
+
+      <p class="card-disclaimer" style="margin-top:1rem;">No payment required. For educational purposes only. Not financial advice. We never share your information.</p>
     </div>
   </div>
 </section>
 
-<!-- ─── KEY MESSAGES ───────────────────────── -->
-<section class="messaging">
-  <div class="container">
-    <p class="section-label">Our Philosophy</p>
-    <h2 class="section-title">Educate First. Advise Never.<br/>Empower Always.</h2>
-    <p class="section-sub">Four principles that drive everything we do.</p>
-    <div class="messages-grid">
-      <div class="msg-card">
-        <div class="quote-mark">"</div>
-        <p>Equity isn't wealth until it moves.</p>
-        <span>Dormant capital loses purchasing power every year. Strategic activation changes the equation.</span>
-      </div>
-      <div class="msg-card">
-        <div class="quote-mark">"</div>
-        <p>Bitcoin is not a gamble — it's the hedge.</p>
-        <span>The hardest digital asset ever created is the counterpart to real estate's physical scarcity.</span>
-      </div>
-      <div class="msg-card">
-        <div class="quote-mark">"</div>
-        <p>Own both sides of the hard-asset spectrum.</p>
-        <span>Real estate and Bitcoin share one trait: finite supply. Own both and own the future.</span>
-      </div>
-      <div class="msg-card">
-        <div class="quote-mark">"</div>
-        <p>You already earned the capital — now learn to position it.</p>
-        <span>This isn't speculation. It's education-driven stewardship of wealth you already built.</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── CTA ───────────────────────────────── -->
-<section class="cta" id="consult">
-  <h2>Ready to Unlock Your Equity?<br/>Start With a <em style="background:linear-gradient(90deg,var(--gold),#ffd280);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-style:normal;">Free Consultation</em></h2>
-  <p>Tell us your situation and we'll send you a complimentary Equity-to-Bitcoin Feasibility Report. No obligation, no sales pitch — just education.</p>
-  <form class="cta-form" onsubmit="handleSubmit(event)">
-    <input type="email" placeholder="Enter your email address" required />
-    <button type="submit">Get My Free Report</button>
-  </form>
-  <p class="disclaimer">By submitting, you agree to receive educational content from Equity2Bitcoin Consulting LLC. For educational purposes only. Not financial advice. We never share your information.</p>
-</section>
-
-<!-- ─── FOOTER ────────────────────────────── -->
+<!-- FOOTER -->
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
-      <a href="#" class="nav-logo" style="display:inline-flex;">
-        <svg class="logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <a href="#" class="nav-logo" style="display:inline-flex;text-decoration:none;">
+        <svg width="38" height="38" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M20 3L37 14V26L20 37L3 26V14L20 3Z" fill="#0d1b2a" stroke="#f5a623" stroke-width="1.5"/>
           <path d="M20 6L34 16V24L20 34L6 24V16L20 6Z" fill="#122033"/>
           <circle cx="20" cy="20" r="8" fill="#f5a623"/>
@@ -860,17 +845,16 @@
         </svg>
         <span style="font-size:1rem;font-weight:800;background:linear-gradient(90deg,#fff 55%,#f5a623);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Equity2Bitcoin</span>
       </a>
-      <p>Equity2Bitcoin Consulting LLC — California-based financial education and milestone consulting firm helping homeowners responsibly convert home equity into Bitcoin.</p>
-      <p style="margin-top:0.5rem; font-style:italic; font-size:0.8rem;">"But this I say, He which soweth sparingly shall reap also sparingly; and he which soweth bountifully shall reap also bountifully." — 2 Corinthians 9:6</p>
+      <p>Equity2Bitcoin Consulting LLC — California-based educational consulting firm helping homeowners convert home equity into Bitcoin through a compliant, milestone-based process.</p>
+      <p style="margin-top:0.75rem; font-style:italic; font-size:0.78rem; color:#4a5a6a;">"But this I say, He which soweth sparingly shall reap also sparingly; and he which soweth bountifully shall reap also bountifully." — 2 Corinthians 9:6</p>
     </div>
     <div class="footer-col">
       <h4>Navigate</h4>
       <ul>
         <li><a href="#how-it-works">How It Works</a></li>
-        <li><a href="#why-bitcoin">Why Bitcoin</a></li>
-        <li><a href="#who-we-serve">Who We Serve</a></li>
-        <li><a href="#model">Our Model</a></li>
-        <li><a href="#consult">Book a Consult</a></li>
+        <li><a href="#what-you-get">What You Get</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#book">Book a Consult</a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -878,32 +862,80 @@
       <ul>
         <li><a href="#">Privacy Policy</a></li>
         <li><a href="#">Terms of Service</a></li>
-        <li><a href="#">Disclaimer</a></li>
-        <li><a href="#">Compliance</a></li>
+        <li><a href="#">Educational Disclaimer</a></li>
+        <li><a href="#">Compliance Statement</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
     <p>© 2025 Equity2Bitcoin Consulting LLC. All rights reserved. Headquarters: California, USA.</p>
-    <p>Founder: Brendan Ngehsi Ngwa Nforbi · <a href="mailto:info@equity2bitcoin.com" style="color:var(--gold);text-decoration:none;">Equity2Bitcoin.com</a></p>
+    <p>Founder: Brendan Ngehsi Ngwa Nforbi &nbsp;·&nbsp; <a href="mailto:info@equity2bitcoin.com" style="color:var(--gold);text-decoration:none;">info@equity2bitcoin.com</a></p>
   </div>
   <p class="footer-legal">
-    <strong>Educational Disclaimer:</strong> All content on this website is for educational purposes only. Equity2Bitcoin Consulting LLC does not provide financial advice, investment advice, tax advice, or legal advice. Equity2Bitcoin does not handle, transmit, or hold client funds, Bitcoin, or any other assets. Clients retain sole discretion over all financial and digital asset decisions. Home equity extraction involves risk, including potential loss of property. Bitcoin is highly volatile and may lose substantial value. Past performance is not indicative of future results. Consult a licensed financial adviser, attorney, and tax professional before making any financial decision.
+    <strong>Educational Disclaimer:</strong> All content on this website is for educational and informational purposes only. Equity2Bitcoin Consulting LLC is not a licensed financial adviser, investment adviser, mortgage broker, or money transmitter. Nothing on this website constitutes financial, investment, tax, or legal advice. Equity2Bitcoin does not handle, hold, transmit, or manage client funds, loans, or Bitcoin at any time. All loan applications are submitted by clients independently to licensed third-party lenders. All Bitcoin purchases are executed independently by clients. Home equity extraction carries risk, including potential loss of your home. Bitcoin and cryptocurrency are highly volatile assets and may lose substantial value. Past performance is not indicative of future results. Consult a licensed financial adviser, mortgage professional, attorney, and tax professional before making any financial decision. Equity2Bitcoin operates under the publisher's exemption for educational content and is not subject to Investment Advisers Act registration for this activity.
   </p>
 </footer>
 
 <script>
-  function handleSubmit(e) {
-    e.preventDefault();
-    const btn = e.target.querySelector('button');
-    const input = e.target.querySelector('input');
-    btn.textContent = 'Thank you! We\'ll be in touch.';
-    btn.style.background = '#4ade80';
-    input.value = '';
-    input.disabled = true;
-    btn.disabled = true;
+  // ── Hero form ─────────────────────────────
+  function submitHeroForm() {
+    const name = document.getElementById('hf-name').value.trim();
+    const email = document.getElementById('hf-email').value.trim();
+    if (!name || !email) { alert('Please enter your name and email.'); return; }
+    document.getElementById('hero-form').style.display = 'none';
+    document.getElementById('hero-success').style.display = 'block';
+  }
+
+  // ── Multi-step booking form ────────────────
+  let currentStep = 1;
+
+  function nextStep(from) {
+    if (from === 1) {
+      const name = document.getElementById('b-name').value.trim();
+      const email = document.getElementById('b-email').value.trim();
+      const phone = document.getElementById('b-phone').value.trim();
+      if (!name || !email || !phone) { alert('Please fill in your name, email, and phone number.'); return; }
+    }
+    document.getElementById('bstep-' + from).classList.remove('active');
+    document.getElementById('dot-' + from).classList.remove('active');
+    document.getElementById('dot-' + from).classList.add('done');
+    const next = from + 1;
+    document.getElementById('bstep-' + next).classList.add('active');
+    if (document.getElementById('dot-' + next)) {
+      document.getElementById('dot-' + next).classList.add('active');
+    }
+    currentStep = next;
+  }
+
+  function prevStep(from) {
+    document.getElementById('bstep-' + from).classList.remove('active');
+    document.getElementById('dot-' + (from - 1)).classList.remove('done');
+    document.getElementById('dot-' + (from - 1)).classList.add('active');
+    if (document.getElementById('dot-' + from)) {
+      document.getElementById('dot-' + from).classList.remove('active');
+    }
+    const prev = from - 1;
+    document.getElementById('bstep-' + prev).classList.add('active');
+    currentStep = prev;
+  }
+
+  function submitBooking() {
+    const day = document.getElementById('b-day').value;
+    const time = document.getElementById('b-time').value;
+    if (!day || !time) { alert('Please select your preferred day and time.'); return; }
+    document.getElementById('bstep-3').classList.remove('active');
+    document.getElementById('dot-3').classList.remove('active');
+    document.getElementById('dot-3').classList.add('done');
+    document.getElementById('bstep-success').classList.add('active');
+  }
+
+  // ── FAQ accordion ──────────────────────────
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
   }
 </script>
-
 </body>
 </html>
